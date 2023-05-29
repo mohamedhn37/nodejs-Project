@@ -2,12 +2,12 @@
     <div class="col-md-8 mx-auto">
         <div class="card p-3">
             <h3>Modifier un Contact</h3>
-            <form action="/update/{{contacts._id}}" method="post">
+            <form action="/update/{{contact._id}}" method="post">
                 <div class="form-group m-3">
-                    <input type="text" class="form-control" name="name" value="{{contacs.name}}" placeholder="Nom">
+                    <input type="text" class="form-control" name="name" value="{{contact.name}}" placeholder="Nom">
                 </div>
                 <div class="form-group m-3">
-                    <input type="text" class="form-control" name="phone" value="{{contacts.phone}}" placeholder="Tél">
+                    <input type="text" class="form-control" name="phone" value="{{contact.phone}}" placeholder="Tél">
                 </div>
                 <div class="form-group m-3">
                     <button type="submit" class="btn btn-primary">Valider</button>

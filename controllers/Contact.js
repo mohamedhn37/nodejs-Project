@@ -13,6 +13,20 @@ const getAllContact = async (req, res) => {
   }
 };
 
+const getContactById = async (req, res) => {
+  try {
+    const contactId = req.params.id;
+    const contact = await Contact.findById(contactId).exec();
+    if (!contact) {
+      return res.json({ error: "Contact not found" });
+    }
+    res.json({ contact });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
 const addContact = async (req, res) => {
   const {name, phone} = req.body;
   const newContact = new Contact({ name, phone });
@@ -53,4 +67,4 @@ const deleteContact = async (req, res) => {
 };
 
 
-module.exports = { getAllContact,  addContact, updateContact, deleteContact}
+module.exports = { getAllContact,getContactById, addContact, updateContact, deleteContact}

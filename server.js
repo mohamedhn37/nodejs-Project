@@ -45,7 +45,7 @@ app.post("/add",  function(req, res) {
 app.get("/update/:id", async (req, res) => {
   try {
     const result = await axios.get(`http://localhost:5000/contacts/${req.params.id}`);
-    res.render("updateContact", { contacts: result.data.contacts });
+    res.render("updateContact", { contact: result.data.contact });
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "Internal server error" });
