@@ -2,12 +2,13 @@
     <div class="col-md-8 mx-auto">
         <div class="card p-3">
             <h3>Modifier un Contact</h3>
-            <form action="/update/{{contact._id}}" method="post">
+            <form action="/update/{{contact._id}}" method="post" onsubmit="return validateForm();">
                 <div class="form-group m-3">
                     <input type="text" class="form-control" name="name" value="{{contact.name}}" placeholder="Nom">
                 </div>
                 <div class="form-group m-3">
-                    <input type="text" class="form-control" name="phone" value="{{contact.phone}}" placeholder="Tél">
+                    <input type="text" class="form-control" name="phone" id="phone" value="{{contact.phone}}" placeholder="Tél">
+                    <span id="phoneError" class="text-danger"></span>
                 </div>
                 <div class="form-group m-3">
                     <button type="submit" class="btn btn-primary">Valider</button>
@@ -16,3 +17,21 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    function validateForm() {
+        const phoneInput = document.getElementById("phone");
+        const phoneNumber = phoneInput.value.trim();
+
+        // Vérifier si le numéro de téléphone ne respecte pas le schéma (10 chiffres, commençant par zéro)
+        if (!/^0\d{9}$/.test(phoneNumber)) {
+            // Afficher un message d'erreur
+            const errorElement = document.getElementById("phoneError");
+            errorElement.textContent = "Le numéro de téléphone doit être composé de 10 chiffres et commencer par zéro.";
+            return false; // Empêcher la soumission du formulaire
+        }
+
+        return true; // Autoriser la soumission du formulaire si la validation réussit
+    }
+</script>
